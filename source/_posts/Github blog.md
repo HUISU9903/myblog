@@ -1,44 +1,110 @@
 ---
 
-title: "R과 R studio를 설치하는 방법"
-excerpt: "R 프로그래밍을 시작하는 방법에 대해 알아보자 "
+title: "Hexo 블로그 만들기"
+excerpt: "Hexo 블로그 만들기"
 categories:
 
-- R
-tags:
-- [기초 설치]
+- other
+tags: 
 date: 2022-03-10 10:00:00
 
 ---
 
-# R 설치
-R을 설치하기 전에 체크 해야 할 사항이 있다.
+# Hexo란
 
-**사용자 폴더의 이름을 한글이 아닌 영어로 지정**
-**사용자 계정명을 영어로 지정**
-**설치 경로에 한글이 없도록 할 것**
+Node.js기반의 블로그 생성기이며, 지킬(jekyll)에 비해 빠른 빌드와 반영 속도를 장점으로 가지고 있다.
 
-R은 한글을 싫어한다. 그걸 주의해야한다.
+# 설치 방법
+## 파일 설치
 
-[R 공식사이트](https://www.r-project.org/) 
+* [node.js](https://nodejs.org/en/)  다운로드 (LTS로 다운하는것을 추천)
 
-준비가 다 되었으면 상단의 사이트에서 다운로드 한다.
+* [Git](git-scm.com) 다운로드 (운영체제에 맞게 다운로드)
 
-download -> 0-cloud 또는 korea -> 사용자의 운영체제 선택 -> base 선택 
+* hexo 설치
 
-다운을 받고 실행 한 뒤 next를 누르다 보면 설치가 되겠지..
+터미널을 연 다음 코드를 입력하여 hexo를 설치한다.
+```
+$ npm install hexo-cli -g
+```
 
-# R Studio 설치
+hexo 블로그를 설치할 디렉토리로 이동하여 터미널에 코드를 입력한다. 
+```
+$ hexo init hexo
+$ cd hexo
+$ npm install
+$ npm install --save hexo-deployer-git
+```
 
-R과 마찬가지로 주의 사항 3가지를 확인 한 다음
+설치 후 터미널에서 명령어를 실행해본다. 서버가 구동되면
+http://localhost:4000  를 인터넷 브라우저에 입력하여 헥소가 정상적으로 작동하는지 확인한다.
+```
+$ hexo server
+```
 
-[R Studio 다운로드](https://www.rstudio.com/products/rstudio/download/)
 
-상단의 사이트에서 다운로드 한다.
+## Github 설정
+Hexo 블로그는 두개의 깃허브 저장소를 사용하는데, 하나는 배포 페이지이고, 다른 하나는 실제 소스가 들어가는 페이지이다.
 
-Rstudio Desktop에 Free라고 써져있는걸로 다운 받는다.
+배포 페이지 저장소 이름은 사용자이름.github.io로 만들어야 기억하기 쉽다. 실제 소스가 저장되는 저장소도 하나 만든다.
 
-우리는 돈이 없는 학생이니까..
+[Github 저장소 만들기](https://github.com/new)
 
-내가 쓰고 있는 운영체제를 확인해서 다운 받는건 필수다.
 
+## config.yml 설정
+
+Github를 통해 블로그를 웹에서도 접속되게 할려면 config.yml에서의 설정이 필요하다.
+Hexo가 설치된 경로로 이동한 후, config.yml 파일을 연다.
+
+```commandline
+deploy:
+  type: ''
+```
+아래 처럼 변경해준다.
+```commandline
+deploy:
+  type: git
+  repo: https://github.com/사용자계정/사용자계정.github.io.git
+  branch: main
+```
+config.yml에서 사이트의 제목과 url도 수정할 수 있다.
+```commandline
+title: 제목을 지어주세요
+subtitle: 부제목을 지어주세요
+description: description을 지어주세요
+author: YourName
+```
+```commandline
+url: https://rain0430.github.io
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+```
+
+## github에 배포하기
+
+정적 리소스가 생성되고 배포를 진행한다.
+
+```commandline
+$ hexo deploy --generate
+```
+
+깃허브 저장소에 실제 소스를 저장하는 과정이다.
+
+처음 실행시에만 (1),(2)를 함께 실행하고,이 후에는 (2)만 실행해도 된다.
+(1)
+```
+$ git init
+$ git remote add origin 저장소 주소
+```
+(2)
+```
+$ git add .
+$ git commit -m '커밋 메세지'
+$ git push origin master
+```
+git의 히스토리 충돌로 push가 안되는 경우에는 아래의 명령어를 사용하여 해결한다.
+
+```commandline
+$ git pull origin 브랜치명 --allow-unrelated-histories
+```
