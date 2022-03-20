@@ -5,7 +5,7 @@ categories:
 
 - R
 tags:
-- [그래프,시각화]
+- [R Study]
 date: 2022-03-16 10:10:00
 
 ---

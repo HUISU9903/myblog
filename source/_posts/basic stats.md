@@ -5,7 +5,7 @@ categories:
 
 - R
 tags:
-- [통계,함수]
+- [R Study]
 date: 2022-03-14 09:00:00 
 
 ---

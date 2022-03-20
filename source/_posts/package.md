@@ -6,7 +6,7 @@ categories:
 
 - R
 tags:
-- [패키지,라이브러리]
+- [R Study]
 date: 2022-03-11 10:10:10
 
 ---

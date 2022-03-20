@@ -5,7 +5,7 @@ categories:
 
 - R
 tags:
-- [데이터,처리]
+- [R Study]
 date: 2022-03-15 09:00:00
 
 ---

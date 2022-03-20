@@ -5,7 +5,7 @@ categories:
 
 - R
 tags:
-- [데이터,불러오기]
+- [R Study]
 date: 2022-03-13 11:10:00
 
 ---

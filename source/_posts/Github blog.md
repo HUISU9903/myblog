@@ -5,7 +5,8 @@ excerpt: "Hexo 블로그 만들기"
 categories:
 
 - other
-tags: 
+tags:
+- [other]
 date: 2022-03-10 10:00:00
 
 ---

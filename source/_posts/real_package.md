@@ -5,7 +5,7 @@ categories:
 
 - R
 tags:
-- [구조,함수]
+- [R Study]
 date: 2022-03-14 08:00:00
 
 ---

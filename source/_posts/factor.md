@@ -5,7 +5,7 @@ categories:
 
 - R
 tags:
-- [벡터]
+- [R Study]
 date: 2022-03-13 13:00:00
 ---
 # 벡터의 종류

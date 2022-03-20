@@ -5,7 +5,7 @@ categories:
 
 - R
 tags:
-- [결측치,이상치]
+- [R Study]
 date: 2022-03-15 14:00:00
 
 ---

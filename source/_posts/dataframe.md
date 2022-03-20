@@ -5,7 +5,7 @@ categories:
 
 - R
 tags:
-- [데이터프레임]
+- [R Study]
 date: 2022-03-12
 
 ---

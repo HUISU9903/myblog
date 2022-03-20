@@ -5,7 +5,7 @@ categories:
 
 - R
 tags:
-- [연산자,데이터]
+- [R Study]
 date: 2022-03-13 15:10:00
 
 ---
