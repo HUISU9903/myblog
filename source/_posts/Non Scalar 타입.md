@@ -1,6 +1,6 @@
 ---
-title: "파이썬 문자열이란"
-excerpt: "문자열에 대하여"
+title: "Non Scalar 타입"
+excerpt: "문자열"
 categories: 
 
 - Python
@@ -236,7 +236,8 @@ a.index('d')
 
 ### replace
 
-``` a = "Life is strange"
+``` python 
+a = "Life is strange"
  a.replace("strange", "Good")
 'YLife is Good'
 ```
