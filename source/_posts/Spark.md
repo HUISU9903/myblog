@@ -1,4 +1,14 @@
-﻿# Ubuntu에 spark 설치하기
+﻿---
+title: "Ubuntu 20.04에 Spark 설치 및 환경 구성"
+excerpt: "Ubuntu 20.04 버전에 Spark를 설치하는 방법을 알아본다."
+categories:
+- Setting
+tags:
+- [Setting]
+- [Spark]
+date: 2022-04-16 20:00:00
+---
+﻿# Ubuntu 20.04에 spark 설치하기
 
 ## 1. java 설치
 spark는 java를 이용하기 때문에 spark를 설치하기 전에 java를 먼저 설치해야 한다.

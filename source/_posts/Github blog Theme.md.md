@@ -1,4 +1,14 @@
-﻿# hexo blog Theme 설정
+﻿﻿---
+title: "Hexo Blog 테마 설정 하기"
+excerpt: "Hexo 기반 Blog에 테마를 설정하는 방법을 알아본다."
+categories:
+- Setting
+tags:
+- [Github blog]
+- [Setting]
+date: 2022-03-14 20:00:00
+---
+# hexo blog 테마 설정
 [hexo 테마 공식 사이트](https://hexo.io/themes/)에 접속하여 원하는 테마를 찾아본 다음, 
 테마의 공식 문서 설명에 따라 설치하면 된다.
 

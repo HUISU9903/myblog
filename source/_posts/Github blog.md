@@ -1,14 +1,12 @@
 ﻿---
-
 title: "Hexo 블로그 만들기"
-excerpt: "Hexo 블로그 만들기"
+excerpt: "Github를 이용하여 Node.js 기반의 Hexo 블로그를 만든다."
 categories:
-
-- other
+- Setting
 tags:
-- [other]
+- [Github blog]
+- [Setting]
 date: 2022-03-10 10:00:00
-
 ---
 # Hexo 블로그
 

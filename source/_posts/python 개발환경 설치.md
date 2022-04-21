@@ -1,4 +1,14 @@
-﻿# 파이썬 개발 환경 설정하기
+﻿﻿---
+title: "Python 개발 환경 설정 하기"
+excerpt: "Windows, Mac, Ubuntu 환경에서 Python 개발 환경을 설정하는 방법을 알아본다."
+categories:
+- Setting
+tags:
+- [Setting]
+- [Python]
+date: 2022-03-13 20:00:00
+---
+# 파이썬 개발 환경 설정하기
 
 ## Pycharm 설치하기
 [Pycharm 공식 사이트](https://www.jetbrains.com/ko-kr/pycharm/download/#section=windows)에 방문하여 자신의 운영체제 및 컴퓨터 사양에 맞는 프로그램을  Community 버전으로 다운 받는다.

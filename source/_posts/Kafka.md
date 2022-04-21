@@ -1,5 +1,14 @@
-﻿# Ubuntu 20.04에 Kafka 설치 및 환경 구성 
-# kafka
+﻿﻿---
+title: "Ubuntu 20.04에 Kafka 설치 및 환경 구성"
+excerpt: "Ubuntu 20.04 버전에 Kafka를 설치하는 방법을 알아본다."
+categories:
+- Setting
+tags:
+- [Setting]
+- [Kafka]
+date: 2022-04-20 20:00:00
+---
+#  Kafka 설치 및 환경 구성
 ## kafka 설치
 보안을 위해 kafka 계정을 따로 만든다.
 ```

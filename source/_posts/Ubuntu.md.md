@@ -1,4 +1,14 @@
-﻿# Ubuntu 듀얼 부팅으로 설치하기
+﻿---
+title: "Ubuntu 20.04 설치하기"
+excerpt: "Ubuntu 20.04를 듀얼 부팅으로 설치하는 방법을 알아본다."
+categories:
+- Setting
+tags:
+- [Setting]
+- [Ubuntu]
+date: 2022-04-16 20:00:00
+---
+﻿# Ubuntu 20.04 듀얼 부팅으로 설치하기
 
 ## 설치 전 해야할 일
 우분투를 듀얼 부팅으로 설치하기 위해서는 부팅용 USB가 필요하다.

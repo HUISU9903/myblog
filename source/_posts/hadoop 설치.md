@@ -1,4 +1,13 @@
-﻿# Ubuntu 20.04에 Hadoop 설치 및 환경 구성
+﻿---
+title: "Ubuntu 20.04에 Hadoop 설치 및 환경 구성" 
+excerpt: "Ubuntu 20.04 버전에 Hadoop를 설치하는 방법을 알아본다."
+categories:
+- Setting
+tags:
+- [Setting]
+- [Hadoop]
+date: 2022-04-16 20:00:00
+---
 # Hadoop 설치하기 및 환경 구성하기
 ## JAVA 설치
 ```
