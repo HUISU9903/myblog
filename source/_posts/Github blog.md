@@ -1,4 +1,4 @@
----
+﻿---
 
 title: "Hexo 블로그 만들기"
 excerpt: "Hexo 블로그 만들기"
@@ -10,101 +10,116 @@ tags:
 date: 2022-03-10 10:00:00
 
 ---
+# Hexo 블로그
 
-# Hexo란
+Node.js기반의 블로그인 hexo 블로그를 설치하는 방법에 대해 배워본다.
 
-Node.js기반의 블로그 생성기이며, 지킬(jekyll)에 비해 빠른 빌드와 반영 속도를 장점으로 가지고 있다.
-
-## 파일 설치
-
-* [node.js](https://nodejs.org/en/)  다운로드 (LTS로 다운하는것을 추천)
-
-* [Git](git-scm.com) 다운로드 (운영체제에 맞게 다운로드)
-
-* hexo 설치
-
-터미널을 연 다음 코드를 입력하여 hexo를 설치한다.
+##  프로그램 설치 및 환경 설정
+hexo 블로그의 버전 관리를 위한 프로그램인 git을 먼저 설치한다.
 ```
-$ npm install hexo-cli -g
+sudo apt install git
 ```
-
-hexo 블로그를 설치할 디렉토리로 이동하여 터미널에 코드를 입력한다. 
+그 후 Node.js를 설치한다.
 ```
-$ hexo init hexo
-$ cd hexo
-$ npm install
-$ npm install --save hexo-deployer-git
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 ```
-
-설치 후 터미널에서 명령어를 실행해본다. 서버가 구동되면
-http://localhost:4000  를 인터넷 브라우저에 입력하여 헥소가 정상적으로 작동하는지 확인한다.
 ```
-$ hexo server
+sudo apt-get install nodejs
 ```
-
-
+```
+node --version
+```
+Ubuntu 20.04 버전의 경우 방화벽이 기본적으로 되어 있기에,
+hexo server를 방화벽에서 허용하는 작업이 필요하다.
+```shell
+$ sudo apt install ufw
+```
+```shell
+$ sudo ufw allow "OpenSSH"
+```
+```shell
+$ sudo ufw enable
+```
+포트 4000의 경우 hexo server의 기본 포트이다.
+```shell
+$ sudo ufw allow 4000
+```
+```shell
+$ sudo ufw allow http
+$ sudo ufw allow https
+```
+## hexo 설치
+hexo 패키지를 설치한다.
+```
+$ sudo npm install hexo-cli -g
+```
+hexo server가 설치될 폴더를 생성한다.
+```
+$ sudo mkdir -p /home/huisu/Documents/hexo
+```
+hexo server 폴더에 필요한 권한과 소유권을 지정한다.
+```
+$ sudo chown $USER:$USER /home/huisu/Documents/hexo
+$ sudo chmod -R 755 /home/huisu/Documents/hexo
+```
+hexo server 폴더로 이동한다.
+```
+$ cd /home/huisu/Documents/hexo
+```
+hexo 블로그를 초기화 한다.
+```shell
+hexo init
+```
+hexo를 설치한다.
+```shell
+npm install
+```
 ## Github 설정
-Hexo 블로그는 두개의 깃허브 저장소를 사용하는데, 하나는 배포 페이지이고, 다른 하나는 실제 소스가 들어가는 페이지이다.
+hexo 블로그는 두개의 깃허브 저장소를 사용하는데, 하나는 배포 페이지이고, 다른 하나는 실제 소스가 들어가는 페이지이다.
 
 배포 페이지 저장소 이름은 사용자이름.github.io로 만들어야 기억하기 쉽다. 실제 소스가 저장되는 저장소도 하나 만든다.
 
 [Github 저장소 만들기](https://github.com/new)
 
-
 ## config.yml 설정
 
-Github를 통해 블로그를 웹에서도 접속되게 할려면 config.yml에서의 설정이 필요하다.
+Github를 통해 블로그를 웹에서 접속되게 하려면 Github 연동이 필요하다.
+config.yml에서 Github연동이 가능하다.
 Hexo가 설치된 경로로 이동한 후, config.yml 파일을 연다.
 
-```commandline
-deploy:
-  type: ''
+Github 연동을 위해 하단 처럼 변경한다.
 ```
-아래 처럼 변경해준다.
-```commandline
 deploy:
   type: git
-  repo: https://github.com/사용자계정/사용자계정.github.io.git
+  repo: https://github.com/huisu9903/huisu9903.github.io.git
   branch: main
 ```
-config.yml에서 사이트의 제목과 url도 수정할 수 있다.
-```commandline
+또한 title, subtitle, author 등을 수정하여 자신만의 블로그를 만들 수 있다.
+```
 title: 제목을 지어주세요
 subtitle: 부제목을 지어주세요
 description: description을 지어주세요
 author: YourName
 ```
-```commandline
-url: https://rain0430.github.io
+```
+url: https://huisu9903.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 ```
 
+설정이 완료되면 hexo가 설치된 폴더에서 터미널을 연 다음 하단의 명령어를 입력한다.
+```
+$ hexo generate 
+$ hexo server
+```
+ http://localhost:4000 를 인터넷 브라우저에 입력하여 헥소가 정상적으로 작동하는지 확인한다.
+
 ## github에 배포하기
-
-정적 리소스가 생성되고 배포를 진행한다.
-
-```commandline
+하단의 명령어를 입력하여 배포를 진행한다.
+```
 $ hexo deploy --generate
 ```
+배포가 완료되면 username.github.io로 접속해서 배포가 정상적으로 되었는지 확인해본다.
 
-깃허브 저장소에 실제 소스를 저장하는 과정이다.
 
-처음 실행시에만 (1),(2)를 함께 실행하고,이 후에는 (2)만 실행해도 된다.
-(1)
-```
-$ git init
-$ git remote add origin 저장소 주소
-```
-(2)
-```
-$ git add .
-$ git commit -m '커밋 메세지'
-$ git push origin master
-```
-git의 히스토리 충돌로 push가 안되는 경우에는 아래의 명령어를 사용하여 해결한다.
-
-```commandline
-$ git pull origin 브랜치명 --allow-unrelated-histories
-```
