@@ -6,7 +6,7 @@ categories:
 tags:
 - [Setting]
 - [Ubuntu]
-date: 2022-04-16 20:00:00
+date: 2022-04-12 20:00:00
 ---
 ﻿# Ubuntu 20.04 듀얼 부팅으로 설치하기
 
