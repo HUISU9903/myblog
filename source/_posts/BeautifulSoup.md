@@ -1,4 +1,4 @@
-﻿﻿﻿---
+﻿---
 title: "BeautifulSoup"
 excerpt: "BeautifulSoup의 설치방법과 기본적인 코드를 알아본다."
 categories:
