@@ -3,13 +3,13 @@ title : "Oracle 19c를 Ubuntu 20.04에 설치하기"
 excerpt: "Oracle 19c를 Ubuntu 20.04에 설치하는 방법에 대해 알아본다."
 categories:
 - Setting
+- Oracle
 tags:
 - [Oracle]
 - [Setting]
 date: 2022-04-23 18:00:00
 ---
 # Oracle19c의 Ubuntu설치
-필요한 도구 : Ubuntu 20.04가 설치된 컴퓨터, Git의 설치, 20GB이상의 저장공간, 좋은 인터넷, 우분투 터미널의 root 권한, Docker의 설치
 
 ## Docker 설치
 HTTPS를 통해 레포지토리를 이용하기 위해 패키지를 설치해준다.
@@ -76,10 +76,15 @@ $ ./buildContainerImage.sh -v 19.3.0 -e
 $ docker images
 ```
 ![image](https://user-images.githubusercontent.com/65166786/164979773-68f38a51-992f-4542-8acb-cd388b00c49e.png)
+
+docker 명령어를 실행할때 마다 permission denied가 뜨는 것을 방지해준다.
+```bash
+sudo usermod -aG docker $USER
+```
 ## Docker image 실행(oracle 실행)
 Docker image를 실행한다.
 ```
-docker run --name oracle19c --network host -p 1521:1521 -p 5500:5500 -v /opt/oracle:/u01/oracle oracle/database:19.3.0-ee
+docker run --name oracle19c --network host -p 1521:1521 -p 5500:5500 -e ORACLE_SID=myoracle -e ORACLE_PDB=oracle -e ORACLE_PWD=1234 -v /opt/oracle:/u01/oracle oracle/database:19.3.0-ee
 ```
  실행 시 출력되는 텍스트의 첫번째 줄에서 패스워드를 볼 수 있다. 찾지 못해도 괜찮다.
  패스워드는 따로 설정 가능하다.
