@@ -1,14 +1,14 @@
 ﻿---
-title : "Oracle의 데이터 타입"
-excerpt: "Oracle에서 제공되는 데이터 타입과 그 활용법에 대해 알아본다"
+title: "Oracle의 데이터 타입"
+excerpt: "Oracle에서 제공되는 다양한 데이터 타입과 그 활용법에 대해 알아본다."
 categories:
 - Oracle
 tags:
 - [Oracle]
 - [SQL]
-date: 2022-04-23 18:00:00
+date: 2022-04-23 10:00:00
 ---
-﻿# Oracle 데이터 타입
+# Oracle 데이터 타입
 ## 문자 데이터 타입
 | 데이터 타입 | 설명 |
 | --- | --- |
@@ -157,3 +157,187 @@ INSERT INTO ex2_5 VALUES (SYSDATE, SYSTIMESTAMP);
 SELECT * FROM ex2_5;
 ```
 ![image](https://user-images.githubusercontent.com/65166786/165050763-00f05529-e157-44c3-b322-ae1fc8f43d22.png)
+
+## 제약 조건
+### NOT NULL
+Column에 `NOT NULL` 제약조건을 명시할 경우 반드시 데이터를 입력해야 한다.
+```
+CREATE TABLE ex2_6 (
+    COL_NULL VARCHAR2(10)
+    ,COL_NOT_NULL VARCHAR2(10) NOT NULL
+);
+```
+ 테이블에 데이터를 삽입한다.
+```
+INSERT INTO ex2_6 VALUES ('AA', ' '); -- null 값 테스트
+
+INSERT INTO ex2_6 VALUES ('AA', 'BB');
+```
+![image](https://user-images.githubusercontent.com/65166786/165197677-a0fbfe77-a504-4cb0-881f-8c8ae212c703.png)
+첫번째 코드를 실행하면 
+"ORA-01400: NULL을 ("ORA_USER"."EX2_6"."COL_NOT_NULL") 안에 삽입할 수 없습니다" 라는 오류가 발생한다. NOT_NULL 값의 경우
+NULL 값을 넣을 수 없기에 발생하는 오류이다.
+```
+SELECT constraint_name, constraint_type, table_name, search_condition
+    FROM user_constraints
+WHERE table_name = 'EX2_6';
+```
+![image](https://user-images.githubusercontent.com/65166786/165195636-d8dbfe14-adbb-4121-829d-52a93ee740d4.png)
+### UNIQUE
+Column에 UNIQUE을 명시할 경우, 같은 내용을 입력할 수 없다.
+```
+CREATE TABLE ex2_7 (
+    COL_UNIQUE_NULL VARCHAR2(10) UNIQUE
+    ,COL_UNIQUE_NNULL VARCHAR2(10) UNIQUE NOT NULL
+    ,COL_UNIQUE VARCHAR2(10)
+    ,CONSTRAINTS unique_nm1 UNIQUE (COL_UNIQUE)
+);
+```
+```
+SELECT constraint_name, constraint_type, table_name, search_condition
+    FROM user_constraints
+WHERE table_name = 'EX2_7';
+```
+같은 내용의 key값을 두 번 삽입한다 .
+```
+INSERT INTO ex2_7 VALUES ('AA', 'AA', 'AA');
+```
+```
+INSERT INTO ex2_7 VALUES ('AA', 'AA', 'AA');
+```
+![image](https://user-images.githubusercontent.com/65166786/165197586-9bf4ac36-4d9d-4ebc-bc29-3b873b7d33c5.png)
+첫번째 코드를 실행한 뒤 두번째 코드를 실행하면
+ "ORA-00001: 무결성 제약 조건(ORA_USER.SYS_C007451)에 위배됩니다" 라는 에러 메시지가 발생한다. 같은 내용의 key값을 삽입하면 발생하는 오류이다. 테이블 내에 같은 내용이 없는지 확인해봐야 한다.
+ 
+ 이번에는 같은 내용의 NULL값을 두 번 삽입한다.
+```
+INSERT INTO ex2_7 VALUES ('', 'BB', 'BB');
+```
+```
+INSERT INTO ex2_7 VALUES ('','CC', 'CC');
+```
+NULL 값의 경우 같은 내용을 두 번 삽입하여도 UNIQUE 비교 대상에서
+제외되는 것을 확인 할 수 있다.
+
+### Primary key
+Column에 Primary key를 명시할 경우, Column은UNIQUE와 NOT NULL 속성을 동시에 가지게 된다.
+```
+CREATE TABLE ex2_8 (
+    COL1 VARCHAR2(10) PRIMARY KEY,
+    COL2 VARCHAR2(10)
+);
+```
+```
+SELECT constraint_name, constraint_type, table_name, search_condition
+    FROM user_constraints
+WHERE table_name = 'EX2_8';
+```
+기본키는 `CONSTRAINT_TYPE`이 P(Primary key)로 생성된다.
+![image](https://user-images.githubusercontent.com/65166786/165196463-5e2744e0-11e6-4b1a-9db3-0374b1c48a1b.png)
+
+기본키는 `NOT NULL` 속성이기에 `NULL` 값 입력이 불가능하다.
+```
+INSERT INTO ex2_8 VALUES ('', 'AA');
+```
+또한 값이 같은 데이터도 입력 불가능하다.
+```
+INSERT INTO ex2_8 VALUES ('AA', 'AA'); 
+```
+```
+INSERT INTO ex2_8 VALUES ('AA', 'AA'); 
+```
+###  Foreign key
+외래키는 테이블 간의 참조 데이터 무결성을 위한 제약조건이다.
+```
+CONSTRAINT 외래키이름 FOREIGN KEY (Column이름..)
+REFERENCES 참조테이블(참조테이블 Column이름..)
+```
+### Check
+check1은 CHECK 범위를 숫자 1~9만 입력 가능하도록 한다.
+check2는 CHECK 범위를 `MALE`와 `FEMALE`만 입력 가능하도록 한다.
+```
+CREATE TABLE ex2_9 (
+ num1 NUMBER 
+ ,CONSTRAINTS check1 CHECK ( num1 BETWEEN 1 AND 9)
+ ,gender VARCHAR2(10)
+ ,CONSTRAINTS check2 CHECK ( gender IN ('MALE', 'FEMALE'))        
+); 
+```
+```
+SELECT constraint_name, constraint_type, table_name, search_condition
+  FROM user_constraints
+ WHERE table_name = 'EX2_9';
+ ```
+![image](https://user-images.githubusercontent.com/65166786/165213115-e2d42b43-f5d4-4a31-9c86-22351cd95f01.png)
+ ```
+ INSERT INTO ex2_9 VALUES (10, 'MAN');
+ ```
+ 숫자 `10`이 1~9의 범위를 벗어나고, `MAN`은 `MALE`이나 `FEMALE`이 아니기 때문에 
+"ORA-02290: 체크 제약조건(C##ORA_USER.CHECK4)이 위배되었습니다"라고 오류가 발생한다.
+![image](https://user-images.githubusercontent.com/65166786/165211571-29a1ec60-670a-4903-90bb-784f7383a9ad.png)
+ 데이터를 제약조건에 맞게 수정해주면 오류가 발생하지 않는다.
+ ```
+ INSERT INTO ex2_9 VALUES (5, 'FEMALE');
+ ```
+ 
+### Default
+제약조건에는 포함되지 않지만 Column 속성으로 `DEFAULT`
+가 존재한다. 이는 Column의 Default값을 명시하는데 사용된다. 
+```
+CREATE TABLE ex2_10 (
+   Col1        VARCHAR2(10) NOT NULL, 
+   Col2        VARCHAR2(10) NULL, 
+   Create_date DATE DEFAULT SYSDATE);
+```
+```
+INSERT INTO ex2_10 (col1, col2) VALUES ('AA', 'AA'); 
+```
+```
+SELECT * FROM ex2_10;
+```
+![image](https://user-images.githubusercontent.com/65166786/165213728-86d7379d-8c5c-42e6-bce8-173e61f2c570.png)
+`DEFAULT SYSDATE`를 해주었기에 따로 값을 넣지 않아도 현재 일자가 입력된다.
+
+## Table 변경
+### Table 요약
+```
+DESC ex2_10;
+```
+### Table 삭제
+```
+DROP TABLE ex2_10;
+```
+### Table Column Name 변경 
+```
+ALTER TABLE ex2_10 RENAME COLUMN Col1 TO Col11; 
+```
+### Table Column 타입 변경
+```
+ALTER TABLE ex2_10 MODIFY col2 VARCHAR2(30);
+```
+### Table Column 추가
+```
+ALTER TABLE ex2_10 ADD col3 NUMBER;
+```
+### Table Column 삭제
+```
+ALTER TABLE ex2_10 DROP COLUMN col3 ;
+```
+### Table Column 제약조건 추가
+```
+ALTER TABLE ex2_10 ADD CONSTRAINTS pk_ex2_10 PRIMARY KEY (col11); 
+```
+### Table Column 제약조건 삭제
+```
+ALTER TABLE ex2_10 DROP CONSTRAINTS pk_ex2_10; -- 제약조건 삭제 
+```
+### Table 복사
+```
+CREATE TABLE ex2_10_1 AS
+SELECT * FROM ex2_10_1;
+```
+
+
+
+
+
