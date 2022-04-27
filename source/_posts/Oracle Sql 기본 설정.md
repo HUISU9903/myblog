@@ -16,7 +16,7 @@ date: 2022-04-23 18:00:00
 
 ## 테이블 스페이스 생성
 ```
-CREATE TABLESPACE myts DATAFILE 'C\sqldevelop\oradata\MYORACLE\myts.dbf' SIZE 100M AUTOEXTEND ON NEXT 5M;
+CREATE TABLESPACE myts DATAFILE 'C:\sqldevelop\oradata\MYORACLE\myts.dbf' SIZE 100M AUTOEXTEND ON NEXT 5M;
 ```
 
 ![image](https://user-images.githubusercontent.com/65166786/165011283-6f6c40ca-acb3-4120-a438-e929683ea9fb.png)
@@ -78,10 +78,10 @@ cd backup
 `huisu`의 경우 비밀번호이므로
 각자 설정한 비밀번호로 바꾸어야한다.
 ```
-imp c##ora_user/huisu file=expcust.dmp log=expcust.log ignore=y grants=y rows=y indexes=y full=y
+imp ora_user/huisu file=expcust.dmp log=expcust.log ignore=y grants=y rows=y indexes=y full=y
 ```
 ```
-imp c##ora_user/huisu file=expall.dmp log=empall.log ignore=y grants=y rows=y indexes=y full=y
+imp ora_user/huisu file=expall.dmp log=empall.log ignore=y grants=y rows=y indexes=y full=y
 ```
 워크시트에 아래의 코드를 작성하여
 10개의 행이 출력되는지 확인해본다.

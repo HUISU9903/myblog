@@ -30,7 +30,7 @@ C 드라이브에 Oracle 폴더를 만든 뒤 파일을 옮긴 후 설치 파일
 전역 데이터베이스 이름을 `myoracle`로 수정하고
 컨테이너 데이터베이스로 생성에 체크해준다.
 비밀번호는 쉬운 걸로 설정한다.(ex. 1234)
-![image](https://user-images.githubusercontent.com/65166786/165005832-4b5e678b-16ca-4d87-b3c2-630e492cc3da.png)
+![image](https://user-images.githubusercontent.com/65166786/165495195-fe5113b8-270c-4d62-8b3e-3c6600c2ec3d.png)
 그 후 설치를 누르면 설치된다.
 
 
